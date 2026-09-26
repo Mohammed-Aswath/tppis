@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+title: tppis
+message: If you use this software, please cite both the method paper and this package.
+type: software
+authors:
+  - family-names: M
+    given-names: Mohammed Aswath
+    email: mohammed.aswath07@gmail.com
+repository-code: https://github.com/Mohammed-Aswath/tppis
+license: MIT
+version: 0.1.0
+abstract: >
+  Open-source Python implementation of Truncated Preconditioned Profiled
+  Independence Screening (TPPIS) as specified by Tanaka and Matsui (2023).
+references:
+  - type: article
+    title: Variable screening using factor analysis for high-dimensional data with multicollinearity
+    authors:
+      - family-names: Tanaka
+        given-names: Shuntaro
+      - family-names: Matsui
+        given-names: Hidetoshi
+    year: 2023
+    doi: 10.48550/arXiv.2306.05702
+    url: https://arxiv.org/abs/2306.05702

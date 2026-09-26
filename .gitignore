@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+.env
+
+# Tests and typing
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.hypothesis/
+
+# Editors
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local data caches (real datasets are fetched, not shipped)
+.tppis_data/
+
+# Working notes and paper copies, not part of the library
+discussions/
+research_paper_pdf/
+yet_to_do.md
+test_results/
+tools/
+
+# Simulation outputs
+reproduction/results/*
+!reproduction/results/.gitkeep

@@ -1,0 +1,30 @@
+site_name: tppis
+site_description: Truncated Preconditioned Profiled Independence Screening
+theme:
+  name: material
+  palette:
+    primary: indigo
+  features:
+    - content.code.copy
+    - navigation.sections
+nav:
+  - Home: index.md
+  - Quickstart: quickstart.md
+  - Theory: theory.md
+  - Examples: examples/example1.md
+  - API:
+      - Screeners: api/screeners.md
+      - Datasets: api/datasets.md
+      - Metrics: api/metrics.md
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: numpy
+            show_source: false
+markdown_extensions:
+  - admonition
+  - tables
+  - pymdownx.superfences
