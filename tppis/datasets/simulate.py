@@ -68,10 +68,11 @@ def _fan_lv_design(
     rather than a ``p x p`` factorization. Column 4 equals the latent factor,
     so its correlation with every other column is ``sqrt(phi)``.
     """
-    factor = rng.normal(size=n)
-    X = np.sqrt(phi) * factor[:, None] + np.sqrt(1.0 - phi) * rng.normal(size=(n, p))
+    factor = np.asarray(rng.standard_normal(n), dtype=np.float64)
+    unique = np.asarray(rng.standard_normal((n, p)), dtype=np.float64)
+    X = np.sqrt(phi) * factor[:, None] + np.sqrt(1.0 - phi) * unique
     X[:, 3] = factor
-    return X
+    return np.asarray(X, dtype=np.float64)
 
 
 def make_example1(
