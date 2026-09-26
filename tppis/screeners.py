@@ -14,8 +14,9 @@ from numpy.typing import ArrayLike, NDArray
 from sklearn.base import BaseEstimator
 from sklearn.feature_selection import SelectorMixin
 from sklearn.metrics import r2_score
-from sklearn.utils.validation import check_is_fitted, validate_data
+from sklearn.utils.validation import check_is_fitted
 
+from tppis._sklearn_compat import check_X, check_xy
 from tppis._validation import TPPISError, check_literal, standardize
 from tppis.spectral import decompose
 from tppis.tuning import FitResult, MethodName, search
@@ -90,7 +91,10 @@ class _BaseScreener(SelectorMixin, BaseEstimator):  # type: ignore[misc]
         return {"requires_y": True, "poor_score": True, "allow_nan": False}
 
     def __sklearn_tags__(self) -> Any:
-        tags = super().__sklearn_tags__()
+        parent = getattr(super(), "__sklearn_tags__", None)
+        if parent is None:
+            return {"requires_y": True, "poor_score": True, "allow_nan": False}
+        tags = parent()
         tags.target_tags.required = True
         tags.input_tags.allow_nan = False
         tags.input_tags.sparse = False
@@ -115,20 +119,7 @@ class _BaseScreener(SelectorMixin, BaseEstimator):  # type: ignore[misc]
         check_literal("backend", self.backend, {"svd", "gram"})
         if y is None:
             raise ValueError("requires y to be passed, but the target y is None")
-        X_arr, y_arr = validate_data(
-            self,
-            X,
-            y,
-            dtype=np.float64,
-            accept_sparse=False,
-            ensure_all_finite=True,
-            ensure_min_samples=2,
-            ensure_min_features=1,
-            y_numeric=True,
-            reset=True,
-        )
-        X_arr = np.ascontiguousarray(X_arr, dtype=np.float64)
-        y_arr = np.ascontiguousarray(np.asarray(y_arr, dtype=np.float64).reshape(-1))
+        X_arr, y_arr = check_xy(self, X, y, reset=True)
         if X_arr.shape[0] != y_arr.shape[0]:
             raise TPPISError(
                 f"X and y must share the first dimension, got n={X_arr.shape[0]} "
@@ -196,15 +187,7 @@ class _BaseScreener(SelectorMixin, BaseEstimator):  # type: ignore[misc]
             Predictions of shape ``(n_new,)``.
         """
         check_is_fitted(self)
-        X_arr = validate_data(
-            self,
-            X,
-            dtype=np.float64,
-            accept_sparse=False,
-            ensure_all_finite=True,
-            reset=False,
-        )
-        X_arr = np.ascontiguousarray(X_arr, dtype=np.float64)
+        X_arr = check_X(self, X, reset=False)
         if self.standardize:
             X_arr = (X_arr - self.x_mean_) / self.x_scale_
         pred = X_arr[:, self.selected_] @ self.coef_ + self.y_mean_

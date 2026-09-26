@@ -10,7 +10,7 @@ from tppis.exceptions import TPPISError
 from tppis.metrics import screening_scores
 from tppis.screeners import FPSIS, FPSISBIC, PPIS, SIS, TPPIS, screen
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 __all__ = [
     "FPSIS",

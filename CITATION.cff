@@ -8,7 +8,7 @@ authors:
     email: mohammed.aswath07@gmail.com
 repository-code: https://github.com/Mohammed-Aswath/tppis
 license: MIT
-version: 0.1.0
+version: 0.1.1
 abstract: >
   Open-source Python implementation of Truncated Preconditioned Profiled
   Independence Screening (TPPIS) as specified by Tanaka and Matsui (2023).

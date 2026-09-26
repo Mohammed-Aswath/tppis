@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 import numpy as np
+import pytest
 from sklearn.base import clone
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
 from sklearn.utils.estimator_checks import parametrize_with_checks
 from tppis import SIS, TPPIS
+from tppis._sklearn_compat import sklearn_at_least
 
 
 def _easy() -> tuple[np.ndarray, np.ndarray]:
@@ -53,6 +55,10 @@ def test_gridsearchcv_over_k() -> None:
     assert search.best_params_["k"] in {1, 2, 3}
 
 
+@pytest.mark.skipif(
+    not sklearn_at_least(1, 6),
+    reason="official estimator checks use the sklearn 1.6 tags API",
+)
 @parametrize_with_checks(
     [
         SIS(k=1),

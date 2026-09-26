@@ -12,7 +12,8 @@ The method screens variables in high-dimensional regression when predictors are 
 pip install tppis
 ```
 
-The package requires Python 3.10+, NumPy, SciPy, and **scikit-learn 1.6+**.
+The package requires Python 3.8+. On 3.9+ it uses scikit-learn 1.6+; on 3.8 it
+uses scikit-learn 1.3. The TPPIS API is the same.
 
 From a clone of this repository:
 
@@ -22,7 +23,7 @@ source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -e ".[dev]"
 ```
 
-Requires Python 3.10+, NumPy, SciPy, and scikit-learn 1.6+.
+Requires Python 3.8+, NumPy, SciPy, and scikit-learn.
 
 ## Quickstart
 
