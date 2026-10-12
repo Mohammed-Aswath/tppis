@@ -80,9 +80,10 @@ docs = [
 
 [project.urls]
 Homepage = "https://github.com/Mohammed-Aswath/tppis"
-Documentation = "https://github.com/Mohammed-Aswath/tppis"
+Documentation = "https://mohammed-aswath.github.io/tppis/"
 Source = "https://github.com/Mohammed-Aswath/tppis"
 Issues = "https://github.com/Mohammed-Aswath/tppis/issues"
+Changelog = "https://github.com/Mohammed-Aswath/tppis/blob/main/CHANGELOG.md"
 
 [tool.hatch.build.targets.sdist]
 include = [

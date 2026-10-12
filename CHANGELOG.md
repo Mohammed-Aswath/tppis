@@ -4,6 +4,13 @@ All notable changes to this project are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Documentation
+
+- README badges, an Example 1 results figure, and a link to the documentation
+  site. No changes to the library code.
+
 ## [0.1.1] - 2026-09-26
 
 ### Added

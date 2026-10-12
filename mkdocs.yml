@@ -1,5 +1,9 @@
 site_name: tppis
 site_description: Truncated Preconditioned Profiled Independence Screening
+site_url: https://mohammed-aswath.github.io/tppis/
+repo_url: https://github.com/Mohammed-Aswath/tppis
+repo_name: Mohammed-Aswath/tppis
+edit_uri: ""
 theme:
   name: material
   palette:

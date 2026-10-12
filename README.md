@@ -1,10 +1,48 @@
 # tppis
 
+[![PyPI](https://img.shields.io/pypi/v/tppis.svg)](https://pypi.org/project/tppis/)
+[![Python versions](https://img.shields.io/pypi/pyversions/tppis.svg)](https://pypi.org/project/tppis/)
+[![CI](https://github.com/Mohammed-Aswath/tppis/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Mohammed-Aswath/tppis/actions/workflows/ci.yml)
+[![Coverage](https://codecov.io/gh/Mohammed-Aswath/tppis/branch/main/graph/badge.svg)](https://codecov.io/gh/Mohammed-Aswath/tppis)
+[![Docs](https://github.com/Mohammed-Aswath/tppis/actions/workflows/docs.yml/badge.svg?branch=main)](https://mohammed-aswath.github.io/tppis/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Mohammed-Aswath/tppis/blob/main/LICENSE)
+
 Open-source Python implementation of **Truncated Preconditioned Profiled Independence Screening** (TPPIS) from Tanaka and Matsui (2023), plus the baselines SIS, FPSIS (and FPSIS-BIC), and PPIS.
 
 The method screens variables in high-dimensional regression when predictors are strongly multicollinear. A factor-analysis transform removes the common factors; TPPIS then *truncates* the tail of that transform so the unique-factor signal is not washed out.
 
 **Maintainer:** [Mohammed Aswath M](https://github.com/Mohammed-Aswath) · [mohammed.aswath07@gmail.com](mailto:mohammed.aswath07@gmail.com) · issues: [github.com/Mohammed-Aswath/tppis](https://github.com/Mohammed-Aswath/tppis/issues)
+
+**Documentation:** [mohammed-aswath.github.io/tppis](https://mohammed-aswath.github.io/tppis/)
+
+## Results
+
+![Mean F2 score and how often x4 is kept, for the five methods on Example 1](https://raw.githubusercontent.com/Mohammed-Aswath/tppis/main/docs/assets/example1_f2.png)
+
+Example 1 of the paper, at the Table 1 setting n = 100, p = 1000, φ = 0.5, averaged
+over 50 simulated datasets. All methods choose their parameters by BIC. F2 weights
+recall twice as much as precision, which is the paper's metric.
+
+| Method | Mean F2 | Runs that keep x4 |
+| --- | --- | --- |
+| SIS | 0.276 | 0% |
+| FPSIS | 0.971 | 96% |
+| FPSIS-BIC | 1.000 | 100% |
+| PPIS | 0.900 | 86% |
+| TPPIS | 1.000 | 100% |
+
+The true predictor x4 has zero marginal correlation with y. SIS ranks columns by
+marginal correlation, so it never finds x4. The factor-based methods remove the
+shared factors first, which recovers it.
+
+This is one cell of Table 1. The other examples can be rerun with the scripts in
+[`reproduction/`](https://github.com/Mohammed-Aswath/tppis/tree/main/reproduction),
+and they do not all match the paper this closely. To redraw the figure:
+
+```bash
+pip install -e ".[repro]"
+python reproduction/make_readme_figure.py
+```
 
 ## Install
 
@@ -82,8 +120,8 @@ Tanaka, S. and Matsui, H. (2023). Variable screening using factor analysis
 for high-dimensional data with multicollinearity. arXiv:2306.05702.
 ```
 
-See [`CITATION.cff`](CITATION.cff).
+See [`CITATION.cff`](https://github.com/Mohammed-Aswath/tppis/blob/main/CITATION.cff).
 
 ## License
 
-MIT. See [`LICENSE`](LICENSE).
+MIT. See [`LICENSE`](https://github.com/Mohammed-Aswath/tppis/blob/main/LICENSE).
